@@ -12,6 +12,7 @@ class DBHandler:
         config = configparser.ConfigParser()
         config.read('config.ini')
         self.eth_api_key = config.get("ETH", "token")
+        self.bsc_api_key = config.get("BSC", "token")
 
     def create_connection(self):
         return sqlite3.connect(self.wallets_file)
@@ -46,6 +47,8 @@ class DBHandler:
             timestamp = self.getCurrentTimeWax()
         elif network == "eth":
             timestamp = self.getCurrentTimeETH()
+        elif network == "bsc":
+            timestamp = self.getCurrentTimeBSC()
         else:
             return
 
@@ -120,3 +123,20 @@ class DBHandler:
                 time.sleep(2)
             else:
                 return timestamp['result']['timeStamp']
+
+    def getCurrentTimeBSC(self):
+        url = f"https://api.bscscan.com/api?module=proxy&action=eth_blockNumber&apikey={self.bsc_api_key}"
+        response = requests.get(url)
+        data = response.json()
+        block_number = int(data['result'], 16)
+        print(block_number)
+        while True:
+            timestamp = requests.get(
+                f"https://api.bscscan.com/api?module=block&action=getblockreward&blockno={block_number}&apikey={self.bsc_api_key}").json()
+            print(timestamp)
+            if timestamp['result']['timeStamp'] is None:
+                time.sleep(2)
+            else:
+                return timestamp['result']['timeStamp']
+
+

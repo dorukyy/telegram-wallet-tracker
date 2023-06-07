@@ -1,22 +1,19 @@
 from datetime import datetime
 import requests
 import yaml
+from future.moves import configparser
 
 from db_handler import DBHandler
 
 
 class BSCWalletTracker:
     def __init__(self):
+        config = configparser.ConfigParser()
+        config.read('config.ini')
         self.db = DBHandler()
+        self.api_key = config.get("BSC", "token")
         with open("messages.yaml", "r") as file:
             self.messages = yaml.safe_load(file)
-
-    def getCurrentTime(self):
-        url = f"https://bscscan.com/api?module=proxy&action=eth_blockNumber"
-        response = requests.get(url)
-        data = response.json()
-        block_number = int(data['result'], 16)
-        return block_number
 
     def get_price(self):
         url = "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd"
@@ -26,16 +23,11 @@ class BSCWalletTracker:
         return price
 
     def get_wallet_transactions(self, wallet_address):
-        url = f"https://api.bscscan.com/api?module=account&action=txlist&address={wallet_address}"
+        url = f"https://api.bscscan.com/api?module=account&action=txlist&address={wallet_address}&sort=desc&apikey={self.api_key}"
         response = requests.get(url)
         data = response.json()
         transactions = data['result']
         return transactions
-
-    def convert_to_timestamp(self, timestamp):
-        dt = datetime.fromtimestamp(int(timestamp))
-        timestamp = int(dt.timestamp())
-        return timestamp
 
     def getNewTransactions(self):
         wallets = self.db.load_wallets_by_blockchain("bsc")
@@ -45,9 +37,8 @@ class BSCWalletTracker:
             for wallet_data in wallet_list:
                 wallet_address, last_check = list(wallet_data.items())[0]
                 transactions = self.get_wallet_transactions(wallet_address)
-
                 for transaction in transactions:
-                    transaction_date = self.convert_to_timestamp(transaction['timeStamp'])
+                    transaction_date = int(transaction['timeStamp'])
 
                     if transaction_date is not None and transaction_date > last_check:
                         try:

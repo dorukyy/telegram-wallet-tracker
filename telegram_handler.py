@@ -6,6 +6,7 @@ import configparser
 
 from blockchains.wax_wallet_tracker import WaxWalletTracker
 from blockchains.eth_wallet_tracker import ETHWalletTracker
+from blockchains.bsc_wallet_tracker import BSCWalletTracker
 from db_handler import DBHandler
 
 
@@ -16,6 +17,7 @@ class WalletTracker:
         self.file_handler = DBHandler()
         self.wax = WaxWalletTracker()
         self.eth = ETHWalletTracker()
+        self.bsc = BSCWalletTracker()
 
         self.bot_token = config.get('Telegram', 'token')
         self.updater = Updater(token=self.bot_token, use_context=True)
@@ -89,6 +91,8 @@ class WalletTracker:
             self.job_queue.run_repeating(self.check_new_wax_transactions, interval=self.track_wax_interval, first=0)
         if self.track_eth:
             self.job_queue.run_repeating(self.check_new_eth_transactions, interval=self.track_eth_interval, first=0)
+        if self.track_bsc:
+            self.job_queue.run_repeating(self.check_new_bsc_transactions, interval=self.track_bsc_interval, first=0)
         self.updater.idle()
 
     def check_new_wax_transactions(self, context):
@@ -99,6 +103,11 @@ class WalletTracker:
     def check_new_eth_transactions(self, context):
         new_eth_transactions = self.eth.getNewTransactions()
         for transaction in new_eth_transactions:
+            self.send_notification(transaction['message'], transaction['chat_id'])
+
+    def check_new_bsc_transactions(self, context):
+        new_bsc_transactions = self.bsc.getNewTransactions()
+        for transaction in new_bsc_transactions:
             self.send_notification(transaction['message'], transaction['chat_id'])
 
     def send_notification(self, message, chat_id):

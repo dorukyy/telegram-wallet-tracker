@@ -1,4 +1,4 @@
-# Wallet Tracker Bot
+# Telegram Wallet Tracker Bot
 
 This project includes a wallet tracking bot that works for cryptocurrencies such as Wax, Ethereum (ETH), and Binance Smart Chain (BSC). This bot uses blockchain APIs to retrieve the balance of a specific wallet and its token balances, and sends notifications when new transactions occur.
 
@@ -9,7 +9,11 @@ This project includes a wallet tracking bot that works for cryptocurrencies such
     <img src="https://img.shields.io/github/last-commit/dorukyy/telegram-wallet-tracker">
 </p>
 
+
+
 ## Support
+
+If you like the project you can support me with the link below
 
 <a href="https://www.buymeacoffee.com/dorkyy" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
@@ -37,8 +41,9 @@ This project includes a wallet tracking bot that works for cryptocurrencies such
 ## Usage
 
 1. Run the `main.py` file.
-2. The bot will periodically check the wallets and send notifications when new transactions occur.
-3. Customize the notification mechanism by editing the `send_notification` function and adding your own notification method.
+2. Edit config.ini file with your own data
+3. The bot will periodically check the wallets and send notifications when new transactions occur.
+4. Customize the notification mechanism by editing the `send_notification` function and adding your own notification method.
 
 
 ## License
