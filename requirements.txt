@@ -1,0 +1,4 @@
+requests
+telegram
+pyyaml
+python-telegram-bot
