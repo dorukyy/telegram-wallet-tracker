@@ -1,0 +1,8 @@
+start_message: "Welcome to Telegram wallet tracker bot!"
+wallet_added: "Wallet successfully added."
+wallet_add_error: "This wallet is already on the list or something went wrong"
+no_wallets: "You have no wallets on the list"
+
+incoming_transaction_title: "<b>Incoming Transaction Detected!</b>"
+outgoing_transaction_title: "<b>Outgoing Transaction Detected!</b>"
+unknown_transaction_title: "<b>Unknown Type of Transaction Detected!</b>"
