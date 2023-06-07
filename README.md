@@ -10,8 +10,7 @@ When a new transaction occurs in any of the tracked wallets, the application sen
 This wallet tracking solution is designed to keep users informed about their cryptocurrency transactions and provide a seamless experience for managing multiple wallets across different blockchains.
 
 
-<img src="https://img.shields.io/github/stars/dorukyy/telegram-wallet-tracker">
-<img src="https://img.shields.io/github/forks/dorukyy/telegram-wallet-tracker"> 
+
 <img src="https://img.shields.io/github/last-commit/dorukyy/telegram-wallet-tracker">
 
 
