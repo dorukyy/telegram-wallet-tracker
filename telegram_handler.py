@@ -87,6 +87,7 @@ class WalletTracker:
 
     def run(self):
         self.updater.start_polling()
+        self.file_handler.resetTimestamps()
         if self.track_wax:
             self.job_queue.run_repeating(self.check_new_wax_transactions, interval=self.track_wax_interval, first=0)
         if self.track_eth:

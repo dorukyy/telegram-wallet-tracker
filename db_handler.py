@@ -139,4 +139,35 @@ class DBHandler:
             else:
                 return timestamp['result']['timeStamp']
 
+    def resetTimestamps(self):
+        connection = self.create_connection()
+        cursor = connection.cursor()
 
+        # Update last_check for eth
+        timestamp_eth = self.getCurrentTimeETH()
+        try:
+            cursor.execute("UPDATE eth SET last_check = ?", (timestamp_eth,))
+            connection.commit()
+            print(f"Updated last_check for ETH: {timestamp_eth}")
+        except Exception as e:
+            print(f"Error updating last_check for ETH: {e}")
+
+        # Update last_check for bsc
+        timestamp_bsc = self.getCurrentTimeBSC()
+        try:
+            cursor.execute("UPDATE bsc SET last_check = ?", (timestamp_bsc,))
+            connection.commit()
+            print(f"Updated last_check for BSC: {timestamp_bsc}")
+        except Exception as e:
+            print(f"Error updating last_check for BSC: {e}")
+
+        # Update last_check for wax
+        timestamp_wax = self.getCurrentTimeWax()
+        try:
+            cursor.execute("UPDATE wax SET last_check = ?", (timestamp_wax,))
+            connection.commit()
+            print(f"Updated last_check for WAX: {timestamp_wax}")
+        except Exception as e:
+            print(f"Error updating last_check for WAX: {e}")
+
+        connection.close()

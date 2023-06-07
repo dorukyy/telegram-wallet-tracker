@@ -1,15 +1,28 @@
-# Telegram Wallet Tracker Bot
-
-This project includes a wallet tracking bot that works for cryptocurrencies such as Wax, Ethereum (ETH), and Binance Smart Chain (BSC). This bot uses blockchain APIs to retrieve the balance of a specific wallet and its token balances, and sends notifications when new transactions occur.
-
-<p align="center">
-    <img src="https://img.shields.io/github/languages/top/dorukyy/telegram-wallet-tracker">
-    <img src="https://img.shields.io/github/stars/dorukyy/telegram-wallet-tracker">
-    <img src="https://img.shields.io/github/forks/dorukyy/telegram-wallet-tracker"> 
-    <img src="https://img.shields.io/github/last-commit/dorukyy/telegram-wallet-tracker">
-</p>
+# Telegram Crypto Wallet Tracker
 
 
+The Telegram Crypto Wallet Tracker is a Python application that allows users to track cryptocurrency wallets for various blockchains and sends notifications on Telegram when a transaction is made.
+
+The application provides a convenient way for users to add, remove, and list their cryptocurrency wallets. It supports popular blockchains such as WAX, BSC (Binance Smart Chain), and ETH (Ethereum).
+
+When a new transaction occurs in any of the tracked wallets, the application sends a notification message to the user's Telegram chat, providing details about the transaction.
+
+This wallet tracking solution is designed to keep users informed about their cryptocurrency transactions and provide a seamless experience for managing multiple wallets across different blockchains.
+
+
+<img src="https://img.shields.io/github/stars/dorukyy/telegram-wallet-tracker">
+<img src="https://img.shields.io/github/forks/dorukyy/telegram-wallet-tracker"> 
+<img src="https://img.shields.io/github/last-commit/dorukyy/telegram-wallet-tracker">
+
+
+### Supported Block-chains
+- ETH
+- BSC
+- WAX
+
+You can contact me via discord:
+
+[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/271635665375068161)
 
 ## Support
 
@@ -17,40 +30,73 @@ If you like the project you can support me with the link below
 
 <a href="https://www.buymeacoffee.com/dorkyy" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-## Features
 
-- Track the balances of wallets in Wax, Ethereum, and Binance Smart Chain blockchains.
-- Retrieve wallet balances and token balances using the respective blockchain APIs.
-- Check wallets at specified intervals and send notifications when new transactions occur.
-- Customize notifications using Telegram or any other notification mechanism.
+## Prerequisites
 
-### Supported Block-chains
-- ETH
-- BSC
-- WAX
+- Python 3.7 or higher
+- `pip` package manager
 
 ## Installation
 
-1. Install Python on your computer (Python 3.6 or newer is required).
-2. Download this project from GitHub or as a ZIP file and extract it to a local folder.
-3. Open a console or terminal and navigate to the project directory.
-4. Install the required dependencies by running the following command:
+1. Clone the repository:
 
-5. Edit the `wallet_tracker.py` file and add your own API key.
+```shell
+git clone https://github.com/your-username/wallet-tracker.git
+```
 
+
+2. Install the required dependencies:
+
+```shell
+pip install -r requirements.txt
+```
+
+3. Edit the config.ini file to configure the Telegram token and blockchain settings:
+
+```
+[Telegram]
+token = <your-telegram-bot-token>
+
+[WAX]
+wax_track = False
+wax_track_interval = 60
+
+[BSC]
+token = <your-bsc-token>
+bsc_track = True
+bsc_track_interval = 60
+
+[ETH]
+token = <your-eth-token>
+eth_track = False
+eth_track_interval = 60
+```
+
+4. Run the application:
+```
+python main.py
+```
 ## Usage
 
-1. Run the `main.py` file.
-2. Edit config.ini file with your own data
-3. The bot will periodically check the wallets and send notifications when new transactions occur.
-4. Customize the notification mechanism by editing the `send_notification` function and adding your own notification method.
+1. Start the bot by sending the /start command.
+
+2. Add a wallet by sending the /add <address> <network> command. For example:
 
 
-## License
+```
+/add 0x123456789abcdefg eth
+```
+This will add an Ethereum wallet with the given address.
 
-This project is licensed under the [MIT License](LICENSE).
+3.Remove a wallet by sending the /remove <address> <network> command. For example:
 
----
+```
+/remove 0x123456789abcdefg eth
+```
+This will remove the Ethereum wallet with the given address.
 
-This README file provides basic information about the purpose, installation, and usage of the project. Remember to customize the project and its requirements accordingly. Also, note that the APIs used within the project may have specific usage limits and require you to obtain necessary permissions.
+4. List all your wallets by sending the /list command.
 
+
+## Contributions
+Contributions are welcome! If you find any issues or have suggestions, please create a new issue or submit a pull request.
