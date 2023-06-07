@@ -1,7 +1,6 @@
 import sqlite3
 import time
 from datetime import datetime
-
 import requests
 from future.moves import configparser
 

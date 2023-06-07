@@ -1,4 +1,3 @@
-import time
 import requests
 import yaml
 from telegram.ext import Updater, CommandHandler
