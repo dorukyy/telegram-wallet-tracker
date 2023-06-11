@@ -22,6 +22,7 @@ This wallet tracking solution is designed to keep users informed about their cry
 You can contact me via discord:
 
 [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/271635665375068161)
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/dorukyd)
 
 ## Support
 
