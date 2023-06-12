@@ -12,6 +12,7 @@ This wallet tracking solution is designed to keep users informed about their cry
 
 
 <img src="https://img.shields.io/github/last-commit/dorukyy/telegram-wallet-tracker">
+<img src="https://img.shields.io/github/downloads/dorukyy/telegram-wallet-tracker/total">
 
 
 ### Supported Block-chains
