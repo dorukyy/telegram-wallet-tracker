@@ -1,6 +1,6 @@
 requests~=2.30.0
 telegram~=0.0.1
 pyyaml~=6.0
-python-telegram-bot
+python-telegram-bot~=13.15
 future
 
